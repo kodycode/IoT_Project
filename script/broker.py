@@ -16,7 +16,7 @@ def on_message(client, userdata, message):
             imageLocation = "images/{}.png".format(time.time())
             storage.child(imageLocation).put("owo.png", user['idToken'])
             imageURL = storage.child(imageLocation).get_url(user['idToken'])
-            data = {"imageUrl": "{}".format(imageURL), "TimeStamp": "{}".format(time.time())}
+            data = {"imageUrl": "{}".format(imageURL), "timeStamp": "{}".format(time.time())}
             # Pass the user's idToken to the push method
             print('Pushing..')
             db.child("date").push(data, user['idToken'])
