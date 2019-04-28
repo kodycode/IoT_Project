@@ -1,3 +1,5 @@
+from picamera import PiCamera
+from time import sleep
 import paho.mqtt.client as mqtt
 import pyrebase
 import time
@@ -9,14 +11,21 @@ def on_message(client, userdata, message):
     global user
     global pushing
     global storage
-    if int(message.payload) == 1:
+    global camera
+    if int(message.payload) == 0:
         if not msg_sent and not pushing:
             pushing = True
+            print("Taking picture..")
+            sleep(5)
+            current_time = time.time()
+            camera.capture('./img/{}.jpg'.format(current_time))
+            print("Picture taken")
             print('Uploading image..')
-            imageLocation = "images/{}.png".format(time.time())
-            storage.child(imageLocation).put("owo.png", user['idToken'])
+            imageLocation = "images/{}.png".format(current_time)
+            storage.child(imageLocation).put("./img/{}.jpg".format(current_time), user['idToken'])
             imageURL = storage.child(imageLocation).get_url(user['idToken'])
             data = {"imageUrl": "{}".format(imageURL), "timeStamp": "{}".format(time.time())}
+            print('Image uploaded')
             # Pass the user's idToken to the push method
             print('Pushing..')
             db.child("date").push(data, user['idToken'])
@@ -48,7 +57,7 @@ user = auth.sign_in_with_email_and_password('test@gmail.com', '123456')
 db = firebase.database()
 storage = firebase.storage()
 
-broker_address = "10.0.0.82"
+broker_address = "127.0.0.1"
 client = mqtt.Client("python client")
 client.connect(broker_address)
 

@@ -70,7 +70,7 @@ export default class App extends React.Component {
           visible={this.state.modalVisible}
           onRequestClose={() => {}}>
           <View style={{alignItems: 'center'}}>
-            <Image style={{ width, height, resizeMode: 'contain' }} source={{ uri: this.state.currentImage }}/>
+            <Image style={{ width, height, resizeMode: 'contain', transform: [{ rotate: '180deg'}] }} source={{ uri: this.state.currentImage }}/>
             <TouchableOpacity style={ styles.modalDismissButton } onPress={() => {this.setModalVisible(!this.state.modalVisible) }}>
               <Text style={{ color: 'white' }}>Dismiss Image View</Text>
             </TouchableOpacity>
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     height: height * 0.1,
     width: width * 0.2,
     borderTopRightRadius: 10,
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+    transform: [{ rotate: '180deg'}]
   },
   optionBox: {
     alignItems: 'center',
