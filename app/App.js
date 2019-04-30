@@ -76,7 +76,8 @@ export default class App extends React.Component {
       apiKey: '<YOUR-API-KEY>',
       authDomain: '<YOUR-AUTH-DOMAIN>',
       databaseURL: '<YOUR-DATABASE-URL>',
-      storageBucket: '<YOUR-STORAGE-BUCKET>'
+      storageBucket: '<YOUR-STORAGE-BUCKET>',
+      projectId: 'Enter Project ID'
     }
 
     await firebase.initializeApp(firebaseConfig)
