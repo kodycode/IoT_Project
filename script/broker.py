@@ -43,7 +43,7 @@ def on_message(client, userdata, message):
 
 msg_sent = False
 pushing = False
-
+camera = PiCamera()
 config = {
   "apiKey": "apiKey",
   "authDomain": "projectId.firebaseapp.com",
