@@ -66,7 +66,7 @@ export default class App extends React.Component {
       for (date in snapshot.val()) {
         tempMessages.push(snapshot.val()[date])
       }
-      this.setState({ dates: tempMessages }, () => this.sendPushNotification())
+      this.setState({ dates: tempMessages.reverse() }, () => this.sendPushNotification())
     })
   }
 
