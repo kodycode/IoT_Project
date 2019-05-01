@@ -178,8 +178,6 @@ const styles = StyleSheet.create({
   avatarImg: {
     height: height * 0.1,
     width: width * 0.2,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
     transform: [{ rotate: '180deg'}]
   },
   optionBox: {
